@@ -7,7 +7,7 @@ global:
 configs:
   cm:
     # Check Git every minute instead of every two: faster feedback on a laptop.
-    timeout.reconciliation: 300s
+    timeout.reconciliation: 60s
 
 # No SSO on a laptop. In production, configure OIDC or Dex here (module 06).
 dex:
