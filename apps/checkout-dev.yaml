@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/abrahamberg/checkout-config.git
     targetRevision: main
-    path: manifest
+    path: manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: checkout-dev
