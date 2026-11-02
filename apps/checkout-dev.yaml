@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: checkout-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/abrahamberg/checkout-config.git
+    targetRevision: main
+    path: manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: checkout-dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
