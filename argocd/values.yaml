@@ -8,6 +8,8 @@ configs:
   cm:
     # Check Git every minute instead of every two: faster feedback on a laptop.
     timeout.reconciliation: 60s
+    # Module 04: a banner on every UI page.
+    ui.bannercontent: "Course cluster: every change goes through Git"
 
 # No SSO on a laptop. In production, configure OIDC or Dex here (module 06).
 dex:
