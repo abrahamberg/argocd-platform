@@ -7,6 +7,7 @@ python3 - <<'PY'
 import glob, sys, yaml
 bad = 0
 for f in sorted(glob.glob("**/*.yaml", recursive=True)):
+    print(f)
     if f.startswith(".github/"):
         continue
     try:
