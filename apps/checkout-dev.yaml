@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: checkout-dev
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io   # deleting the app deletes what it deployed
 spec:
   project: default
   source:
