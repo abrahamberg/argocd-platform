@@ -10,6 +10,8 @@ configs:
     # behind it. Only safe because nothing else can reach the server Service.
     server.insecure: true
   cm:
+    # Module 06: the shared admin account is off. People log in as themselves.
+    admin.enabled: false
     accounts.alice: login            # platform team
     rbac:
       # Logged in but not listed below: see nothing.
