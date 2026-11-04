@@ -13,16 +13,17 @@ configs:
     # Module 06: the shared admin account is off. People log in as themselves.
     admin.enabled: false
     accounts.alice: login            # platform team
-    rbac:
-      # Logged in but not listed below: see nothing.
-      policy.default: ""
-      policy.csv: |
-        g, alice, role:admin
 
     # Check Git every minute instead of every two: faster feedback on a laptop.
     timeout.reconciliation: 60s
     # Module 04: a banner on every UI page.
     ui.bannercontent: "Course cluster: every change goes through Git"
+  rbac:
+    # Logged in but not listed below: see nothing.
+    policy.default: ""
+    policy.csv: |
+      # Platform team: everything.
+      g, alice, role:admin
 
 server:
   ingress:
