@@ -5,11 +5,24 @@ global:
   domain: argocd.localtest.me
 
 configs:
+  params:
+    # TLS ends at the ingress controller (Traefik); Argo CD serves plain HTTP
+    # behind it. Only safe because nothing else can reach the server Service.
+    server.insecure: true
   cm:
     # Check Git every minute instead of every two: faster feedback on a laptop.
     timeout.reconciliation: 60s
     # Module 04: a banner on every UI page.
     ui.bannercontent: "Course cluster: every change goes through Git"
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      # Serve on Traefik's HTTPS entrypoint with its default certificate.
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
 
 # No SSO on a laptop. In production, configure OIDC or Dex here (module 06).
 dex:
