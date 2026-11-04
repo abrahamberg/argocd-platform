@@ -3,14 +3,23 @@ kind: Application
 metadata:
   name: checkout-prod
   namespace: argocd
+  labels:
+    team: checkout
+    env: prod
   finalizers:
-    - resources-finalizer.argocd.argoproj.io   # deleting the app deletes what it deployed
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://github.com/abrahamberg/checkout-config.git
-    targetRevision: main
-    path: kustomize/prod
+  sources:
+    - repoURL: https://github.com/abrahamberg/checkout-app.git
+      path: chart
+      targetRevision: v1.0.0          # a release of the chart
+      helm:
+        valueFiles:
+          - $config/helm/prod.yaml
+    - repoURL: https://github.com/abrahamberg/checkout-config.git
+      targetRevision: main
+      ref: config                     # makes $config point at this repo
   destination:
     server: https://kubernetes.default.svc
     namespace: checkout-prod
