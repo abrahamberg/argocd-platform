@@ -17,7 +17,6 @@ configs:
       # Logged in but not listed below: see nothing.
       policy.default: ""
       policy.csv: |
-        # Platform team: everything.
         g, alice, role:admin
 
     # Check Git every minute instead of every two: faster feedback on a laptop.
